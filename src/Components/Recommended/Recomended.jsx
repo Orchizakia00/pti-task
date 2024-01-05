@@ -7,7 +7,7 @@ import 'swiper/css/free-mode';
 import 'swiper/css/pagination';
 // import './styles.css';
 
-const Popular = () => {
+const Recommended = () => {
     const [items, setItems] = useState([]);
 
     const url = 'http://www.api.technicaltest.quadtheoryltd.com/api/Item?page=1&pageSize=10';
@@ -17,15 +17,15 @@ const Popular = () => {
             .then(res => res.json())
             .then(data => {
                 const items = data.Items;
-                const popularItems = items.filter(item => item.IsPopular === true);
-                setItems(popularItems);
+                const recommendedItems = items.filter(item => item.IsRecommended === true);
+                setItems(recommendedItems);
             })
     }, [url])
 
     return (
         <div className="pl-3 my-10">
             <div className="flex justify-between mb-4">
-                <p className="text-3xl">Popular</p>
+                <p className="text-3xl">Recommended</p>
                 <div className="flex items-center">
                     <button className="text-orange-500  hidden sm:hidden md:flex">AddMore</button>
                     <div className="flex">
@@ -71,4 +71,4 @@ const Popular = () => {
     );
 };
 
-export default Popular;
+export default Recommended;
