@@ -1,5 +1,6 @@
 import Banner from "../Components/Banner/Banner";
 import Navbar from "../Components/Navbar/Navbar";
+import Popular from "../Components/Popular/Popular";
 
 const Home = () => {
     return (
@@ -7,6 +8,7 @@ const Home = () => {
             <div className="lg:w-[1200px] mx-auto">
                 <Navbar />
                 <Banner />
+                <Popular />
             </div>
         </div>
     );
