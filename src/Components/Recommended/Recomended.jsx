@@ -5,10 +5,12 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/free-mode';
 import 'swiper/css/pagination';
+import { useForm } from "react-hook-form";
 // import './styles.css';
 
 const Recommended = () => {
     const [items, setItems] = useState([]);
+    const { register, handleSubmit } = useForm();
 
     const url = 'http://www.api.technicaltest.quadtheoryltd.com/api/Item?page=1&pageSize=10';
 
@@ -20,14 +22,94 @@ const Recommended = () => {
                 const recommendedItems = items.filter(item => item.IsRecommended === true);
                 setItems(recommendedItems);
             })
-    }, [url])
+    }, [url]);
+
+    const onSubmit = async (data) => {
+        console.log(data);
+    }
 
     return (
         <div className="pl-3 my-10">
             <div className="flex justify-between mb-4">
                 <p className="text-3xl">Recommended</p>
                 <div className="flex items-center">
-                    <button className="text-orange-500  hidden sm:hidden md:flex">AddMore</button>
+                    <button className="text-orange-500  hidden sm:hidden md:flex" onClick={() => document.getElementById('my_modal_2').showModal()}>AddMore</button>
+                    <dialog id="my_modal_2" className="modal">
+                        <div className="modal-box">
+                            <h3 className="font-bold text-lg text-center">Add New Item!</h3>
+                            <form onSubmit={handleSubmit(onSubmit)}>
+                                <div className="form-control w-full my-6">
+                                    <label className="label">
+                                        <span className="label-text">Name</span>
+                                    </label>
+                                    <input
+                                        type="text"
+                                        placeholder="Name"
+                                        {...register('Name', { required: true })}
+                                        required
+                                        className="input input-bordered w-full" />
+                                </div>
+                                <div className="flex gap-6">
+
+                                    <div className="form-control w-full my-2">
+                                        <label className="label">
+                                            <span className="label-text">Popular?</span>
+                                        </label>
+                                        <select defaultValue="default" {...register('IsPopular', { required: true })}
+                                            className="select select-bordered w-full">
+                                            <option disabled value="default">Is Popular?</option>
+                                            <option value="true">Yes</option>
+                                            <option value="false">No</option>
+                                        </select>
+                                    </div>
+
+                                    <div className="form-control w-full my-2">
+                                        <label className="label">
+                                            <span className="label-text">Recommended?</span>
+                                        </label>
+                                        <select defaultValue="default" {...register('IsRecommended', { required: true })}
+                                            className="select select-bordered w-full">
+                                            <option disabled value="default">Is Recommended?</option>
+                                            <option value="true">Yes</option>
+                                            <option value="false">No</option>
+                                        </select>
+                                    </div>
+
+
+                                </div>
+
+                                <div className="form-control w-full my-2">
+                                    <label className="label">
+                                        <span className="label-text">Price</span>
+                                    </label>
+                                    <input
+                                        type="number"
+                                        placeholder="Price"
+                                        {...register('Price', { required: true })}
+                                        className="input input-bordered w-full" />
+                                </div>
+
+                                <div className="form-control w-full my-2">
+                                    <label className="label">
+                                        <span className="label-text">Image Url</span>
+                                    </label>
+                                    <input
+                                        type="text"
+                                        placeholder="Image Url"
+                                        {...register('ImageUrl', { required: true })}
+                                        required
+                                        className="input input-bordered w-full" />
+                                </div>
+
+                                <button className="btn bg-orange-500 text-white btn-block mt-4">
+                                    Add Item
+                                </button>
+                            </form>
+                        </div>
+                        <form method="dialog" className="modal-backdrop">
+                            <button>close</button>
+                        </form>
+                    </dialog>
                     <div className="flex">
                         <button className=" hidden sm:hidden md:flex"><FaAngleLeft color="gray" /></button>
                         <button><FaAngleRight /></button>
