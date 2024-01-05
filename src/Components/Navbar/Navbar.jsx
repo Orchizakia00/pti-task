@@ -1,5 +1,5 @@
-import { FaAngleDown, FaSearch, FaUser } from "react-icons/fa";
-import user from '../../assets/user.png'
+import { FaAngleDown, FaSearch } from "react-icons/fa";
+import user from '../../assets/user.png';
 
 const Navbar = () => {
     return (
