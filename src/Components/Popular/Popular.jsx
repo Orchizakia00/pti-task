@@ -12,17 +12,17 @@ const Popular = () => {
     const [items, setItems] = useState([]);
     const { register, handleSubmit } = useForm();
 
-    const url = 'http://www.api.technicaltest.quadtheoryltd.com/api/Item?page=1&pageSize=10';
+    // const url = 'http://www.api.technicaltest.quadtheoryltd.com/api/Item?page=1&pageSize=10';
 
     useEffect(() => {
-        fetch(url)
+        fetch('/data.json')
             .then(res => res.json())
             .then(data => {
                 const items = data.Items;
                 const popularItems = items.filter(item => item.IsPopular === true);
                 setItems(popularItems);
             })
-    }, [url]);
+    }, []);
 
     const onSubmit = async (data) => {
         console.log(data);

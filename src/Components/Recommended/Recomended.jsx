@@ -12,17 +12,17 @@ const Recommended = () => {
     const [items, setItems] = useState([]);
     const { register, handleSubmit } = useForm();
 
-    const url = 'http://www.api.technicaltest.quadtheoryltd.com/api/Item?page=1&pageSize=10';
+    // const url = 'http://www.api.technicaltest.quadtheoryltd.com/api/Item?page=1&pageSize=10';
 
     useEffect(() => {
-        fetch(url)
+        fetch('/data.json')
             .then(res => res.json())
             .then(data => {
                 const items = data.Items;
                 const recommendedItems = items.filter(item => item.IsRecommended === true);
                 setItems(recommendedItems);
             })
-    }, [url]);
+    }, []);
 
     const onSubmit = async (data) => {
         console.log(data);
