@@ -10,7 +10,7 @@ const Banner = () => {
                 </div>
                 <div className="flex-1">
                     <div className=" bg-orange-300 h-[180px] lg:h-full lg:bg-transparent rounded-b-3xl">
-                        <img src={banner} className="relative bottom-16 lg:bottom-0 lg:top-10" alt="" />
+                        <img src={banner} className="relative bottom-20 lg:bottom-0 lg:top-10" alt="" />
                     </div>
                 </div>
             </div>
